@@ -1,0 +1,1 @@
+include ':app', ':network_data', ':network_domain', ':persistence_data', ':persistence_domain', ':framework_domain', ':framework_data', ':network_presentation'
