@@ -49,6 +49,6 @@ dependencies {
     implementation project(":network_domain")
     implementation project(":network_presentation")
 
-    implementation project(":framework_data")
+    implementation project(':framework_presentation')
     implementation project(":framework_domain")
 }

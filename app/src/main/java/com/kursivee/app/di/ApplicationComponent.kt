@@ -1,6 +1,6 @@
 package com.kursivee.app.di
 
-import com.kursivee.framework_data.activity.ActivityDagger
+import com.kursivee.framework_presentation.activity.ActivityDagger
 import com.kursivee.network_presentation.NetworkModule
 import dagger.Component
 
