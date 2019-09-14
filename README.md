@@ -7,3 +7,6 @@ Another attempt at multi modular clean architecture
 - viewModelScope
 - MVVM
 - coroutines
+
+## API
+This project uses https://newsapi.org for testing purposes. Grab an APIKEY from there and define it as `NEWS_API_KEY` in your `gradle.properties`
