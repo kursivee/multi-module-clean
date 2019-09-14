@@ -45,6 +45,9 @@ dependencies {
     implementation "io.arrow-kt:arrow-syntax:$arrow_version"
     kapt "io.arrow-kt:arrow-meta:$arrow_version"
 
+    implementation "com.squareup.retrofit2:retrofit:2.6.1"
+    implementation 'com.squareup.retrofit2:converter-moshi:2.6.1'
+
     implementation project(":network_data")
     implementation project(":network_domain")
     implementation project(":network_presentation")

@@ -17,7 +17,11 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField 'String', "API_KEY", NEWS_API_KEY
+        }
         release {
+            buildConfigField 'String', "API_KEY", NEWS_API_KEY
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -39,6 +43,10 @@ dependencies {
     def dagger = '2.24'
     implementation "com.google.dagger:dagger:$dagger"
     kapt "com.google.dagger:dagger-compiler:$dagger"
+
+    implementation "com.squareup.retrofit2:retrofit:2.6.1"
+    implementation 'com.squareup.retrofit2:converter-moshi:2.6.1'
+
 
     implementation project(":network_data")
     implementation project(":network_domain")

@@ -4,7 +4,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragment.lookup.LookupFragment" android:visibility="visible">
+        tools:context=".fragment.news.NewsFragment" android:visibility="visible">
 
     <TextView
             android:layout_width="match_parent"

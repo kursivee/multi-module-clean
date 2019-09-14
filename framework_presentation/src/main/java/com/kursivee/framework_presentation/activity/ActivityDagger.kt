@@ -1,12 +1,12 @@
 package com.kursivee.framework_presentation.activity
 
-import com.kursivee.framework_presentation.fragment.lookup.di.LookupDagger
+import com.kursivee.framework_presentation.fragment.news.di.NewsDagger
 import dagger.Subcomponent
 
 object ActivityDagger {
     @Subcomponent
     @ActivityScope
-    interface ActivityComponent: LookupDagger.AppGraph {
+    interface ActivityComponent: NewsDagger.AppGraph {
 
         @Subcomponent.Builder
         interface Builder {

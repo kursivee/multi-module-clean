@@ -1,8 +1,8 @@
-package com.kursivee.framework_presentation.fragment.lookup.di
+package com.kursivee.framework_presentation.fragment.news.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.kursivee.framework_presentation.fragment.lookup.LookupViewModel
+import com.kursivee.framework_presentation.fragment.news.NewsViewModel
 import com.kursivee.framework_domain.viewmodel.ViewModelFactory
 import com.kursivee.framework_domain.viewmodel.ViewModelKey
 import dagger.Binds
@@ -16,6 +16,6 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(LookupViewModel::class)
-    abstract fun provideLookupViewModel(lookupViewModel: LookupViewModel): ViewModel
+    @ViewModelKey(NewsViewModel::class)
+    abstract fun provideNewsViewModel(newsViewModel: NewsViewModel): ViewModel
 }

@@ -1,11 +1,14 @@
 package com.kursivee.app.di
 
 import com.kursivee.framework_presentation.activity.ActivityDagger
-import com.kursivee.network_presentation.NetworkModule
+import com.kursivee.network_presentation.di.NetworkModule
+import com.kursivee.network_presentation.di.RetrofitModule
 import dagger.Component
+import javax.inject.Singleton
 
 @Component(modules = [
-    NetworkModule::class
+    NetworkModule::class,
+    RetrofitModule::class
 ])
-@ApplicationScope
+@Singleton
 interface ApplicationComponent: ActivityDagger.AppGraph

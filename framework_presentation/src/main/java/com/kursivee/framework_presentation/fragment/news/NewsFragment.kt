@@ -1,4 +1,4 @@
-package com.kursivee.framework_presentation.fragment.lookup
+package com.kursivee.framework_presentation.fragment.news
 
 import android.content.Context
 import android.os.Bundle
@@ -9,34 +9,34 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.kursivee.framework_presentation.R
-import com.kursivee.framework_presentation.fragment.lookup.di.LookupDagger
+import com.kursivee.framework_presentation.fragment.news.di.NewsDagger
 import com.kursivee.framework_domain.injector.ext.injector
 import com.kursivee.framework_domain.fragment.BaseFragment
-import kotlinx.android.synthetic.main.lookup_fragment.*
+import kotlinx.android.synthetic.main.news_fragment.*
 import javax.inject.Inject
 
-class LookupFragment : BaseFragment<LookupDagger.LookupComponent>() {
+class NewsFragment : BaseFragment<NewsDagger.NewsComponent>() {
 
-    override val injector: LookupDagger.LookupComponent by lazy {
-        requireActivity().injector<LookupDagger.AppGraph>()
+    override val injector: NewsDagger.NewsComponent by lazy {
+        requireActivity().injector<NewsDagger.AppGraph>()
             .p3builder()
             .build()
     }
 
     companion object {
-        fun newInstance() = LookupFragment()
+        fun newInstance() = NewsFragment()
     }
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var viewModel: LookupViewModel
+    private lateinit var viewModel: NewsViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.lookup_fragment, container, false)
+        return inflater.inflate(R.layout.news_fragment, container, false)
     }
 
     override fun onAttach(context: Context) {
@@ -46,7 +46,7 @@ class LookupFragment : BaseFragment<LookupDagger.LookupComponent>() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(LookupViewModel::class.java)
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(NewsViewModel::class.java)
         viewModel.loading.observe(viewLifecycleOwner, Observer {
             if(it) {
                 showSpinner()

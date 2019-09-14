@@ -2,7 +2,7 @@ package com.kursivee.framework_presentation.activity
 
 import android.os.Bundle
 import com.kursivee.framework_presentation.R
-import com.kursivee.framework_presentation.fragment.lookup.LookupFragment
+import com.kursivee.framework_presentation.fragment.news.NewsFragment
 import com.kursivee.framework_domain.activity.BaseActivity
 import com.kursivee.framework_domain.injector.ext.injector
 
@@ -17,7 +17,7 @@ class PublicActivity : BaseActivity<ActivityDagger.ActivityComponent>(R.id.pb_lo
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cold)
         supportFragmentManager.beginTransaction()
-            .add(R.id.cl_container, LookupFragment.newInstance())
+            .add(R.id.cl_container, NewsFragment.newInstance())
             .commitNow()
     }
 
