@@ -10,17 +10,17 @@ import com.kursivee.network_domain.news.model.Article
 class NewsViewHolder(
     private val container: View,
     private val onClick: (String) -> Unit
-): CustomViewHolder(container) {
+): CustomViewHolder<Article>(container) {
 
     private val image: ImageView = container.findViewById(R.id.iv_article)
     private val title: TextView = container.findViewById(R.id.tv_title)
     private val author: TextView = container.findViewById(R.id.tv_author)
 
-    fun bind(article: Article) {
-        render(image, article.urlToImage)
-        render(title, article.title)
-        render(author, article.author)
-        article.url?.let { url ->
+    override fun bind(data: Article) {
+        render(image, data.urlToImage)
+        render(title, data.title)
+        render(author, data.author)
+        data.url?.let { url ->
             container.setOnClickListener {
                 onClick(url)
             }

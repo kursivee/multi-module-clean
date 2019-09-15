@@ -14,7 +14,7 @@ import com.kursivee.framework_domain.handler.KeyboardHandler
  * Recycler view that automatically hides keyboard on scroll
  */
 
-class CustomRecyclerView @JvmOverloads constructor(
+open class CustomRecyclerView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyle: Int = 0

@@ -8,7 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import coil.size.Scale
 
-abstract class CustomViewHolder(view: View): RecyclerView.ViewHolder(view) {
+abstract class CustomViewHolder<T>(view: View): RecyclerView.ViewHolder(view) {
+
+    abstract fun bind(data: T)
+
     protected fun render(textView: TextView, data: String?) {
         data?.let {
             textView.isVisible = true

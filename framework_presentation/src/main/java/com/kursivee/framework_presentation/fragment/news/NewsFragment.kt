@@ -37,8 +37,8 @@ class NewsFragment : BaseFragment<NewsDagger.NewsComponent>() {
 
     private lateinit var viewModel: NewsViewModel
 
-    private val newsListAdapter: NewsListAdapter = NewsListAdapter(onClick = ::openUrl)
-
+    private val newsListAdapter = NewsAdapter(R.layout.article_layout, onClick = ::openUrl)
+    
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
