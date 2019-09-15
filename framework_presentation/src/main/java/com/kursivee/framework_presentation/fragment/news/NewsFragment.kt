@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.kursivee.framework_domain.activity.BaseActivity
 import com.kursivee.framework_domain.fragment.BaseFragment
+import com.kursivee.framework_domain.handler.KeyboardHandler
 import com.kursivee.framework_domain.injector.ext.injector
 import com.kursivee.framework_presentation.R
 import com.kursivee.framework_presentation.fragment.news.di.NewsDagger
@@ -20,7 +21,7 @@ import kotlinx.android.synthetic.main.news_fragment.*
 import javax.inject.Inject
 
 
-class NewsFragment : BaseFragment<NewsDagger.NewsComponent>() {
+class NewsFragment : BaseFragment<NewsDagger.NewsComponent, NewsViewModel>() {
 
     override val injector: NewsDagger.NewsComponent by lazy {
         requireActivity().injector<NewsDagger.AppGraph>()
@@ -34,8 +35,6 @@ class NewsFragment : BaseFragment<NewsDagger.NewsComponent>() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    private lateinit var viewModel: NewsViewModel
 
     private val newsListAdapter = NewsAdapter(R.layout.article_layout, onClick = ::openUrl)
     
@@ -52,34 +51,21 @@ class NewsFragment : BaseFragment<NewsDagger.NewsComponent>() {
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
+        vm = ViewModelProviders.of(this, viewModelFactory).get(NewsViewModel::class.java)
         super.onActivityCreated(savedInstanceState)
-
         rv_news.init(newsListAdapter)
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(NewsViewModel::class.java)
-        viewModel.loading.observe(viewLifecycleOwner, Observer {
-            if(it) {
-                showSpinner()
-            } else {
-                hideSpinner()
-            }
-        })
-        viewModel.s.observe(viewLifecycleOwner, Observer {
+        vm.s.observe(viewLifecycleOwner, Observer {
             newsListAdapter.updateList(it)
             rv_news.scrollToPosition(0)
         })
         btn_submit.setOnClickListener {
-            (requireActivity() as BaseActivity<*>).hideKeyboard()
-            et_input.clearFocus()
-            viewModel.getTopHeadlines(et_input.text.toString())
+            (requireActivity() as KeyboardHandler).hideKeyboard()
+            vm.getTopHeadlines(et_input.text.toString())
         }
-        viewModel.error.observe(viewLifecycleOwner, Observer {
-            Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
-        })
     }
 
     private fun openUrl(url: String) {
         val intent = Intent(Intent.ACTION_VIEW).setData(Uri.parse(url))
         startActivity(intent)
     }
-
 }
