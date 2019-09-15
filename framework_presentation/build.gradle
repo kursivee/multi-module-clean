@@ -5,7 +5,14 @@ apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
 
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 
     defaultConfig {
         minSdkVersion 23
@@ -55,4 +62,5 @@ dependencies {
 
     implementation project(":network_domain")
     implementation project(":framework_domain")
+    implementation project(":framework_data")
 }

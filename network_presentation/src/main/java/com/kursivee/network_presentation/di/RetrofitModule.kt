@@ -1,5 +1,7 @@
 package com.kursivee.network_presentation.di
 
+import android.content.Context
+import coil.util.CoilUtils
 import com.kursivee.network_data.news.api.NewsApi
 import com.kursivee.network_presentation.ApiKeyInterceptor
 import com.kursivee.network_presentation.BuildConfig
@@ -18,8 +20,9 @@ object RetrofitModule {
     @Provides
     @Singleton
     @JvmStatic
-    fun provideOkHttpClient(@Named("apiKey") apiKey: String): OkHttpClient = OkHttpClient.Builder()
+    fun provideOkHttpClient(@Named("apiKey") apiKey: String, context: Context): OkHttpClient = OkHttpClient.Builder()
         .addInterceptor(ApiKeyInterceptor(apiKey))
+        .cache(CoilUtils.createDefaultCache(context))
         .build()
 
     @Provides

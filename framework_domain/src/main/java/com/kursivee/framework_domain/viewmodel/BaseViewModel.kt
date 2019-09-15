@@ -10,6 +10,9 @@ abstract class BaseViewModel: ViewModel() {
     protected val mutableLoading: MutableLiveData<Boolean> = MutableLiveData(false)
     val loading: LiveData<Boolean> = mutableLoading
 
+    protected val mutableError: MutableLiveData<String> = MutableLiveData()
+    val error: LiveData<String> = mutableError
+
     fun request(block: suspend () -> Unit) {
         mutableLoading.postValue(true)
         viewModelScope.launch {

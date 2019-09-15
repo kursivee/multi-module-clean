@@ -6,6 +6,8 @@ import com.kursivee.framework_domain.application.BaseApplication
 
 class Application: BaseApplication<ApplicationComponent>() {
     override val injector: ApplicationComponent by lazy {
-        DaggerApplicationComponent.builder().build()
+        DaggerApplicationComponent.builder()
+            .applicationContext(applicationContext)
+            .build()
     }
 }

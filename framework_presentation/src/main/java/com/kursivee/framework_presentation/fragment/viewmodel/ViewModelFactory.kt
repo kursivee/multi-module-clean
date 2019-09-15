@@ -1,4 +1,4 @@
-package com.kursivee.framework_domain.viewmodel
+package com.kursivee.framework_presentation.fragment.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
