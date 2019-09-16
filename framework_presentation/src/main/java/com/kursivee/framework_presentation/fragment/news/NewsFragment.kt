@@ -7,11 +7,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import com.kursivee.framework_domain.activity.BaseActivity
 import com.kursivee.framework_domain.fragment.BaseFragment
 import com.kursivee.framework_domain.handler.KeyboardHandler
 import com.kursivee.framework_domain.injector.ext.injector
@@ -54,10 +51,10 @@ class NewsFragment : BaseFragment<NewsDagger.NewsComponent, NewsViewModel>() {
         vm = ViewModelProviders.of(this, viewModelFactory).get(NewsViewModel::class.java)
         super.onActivityCreated(savedInstanceState)
         rv_news.init(newsListAdapter)
-        vm.s.observe(viewLifecycleOwner, Observer {
+        vm.articles.observe {
             newsListAdapter.updateList(it)
             rv_news.scrollToPosition(0)
-        })
+        }
         btn_submit.setOnClickListener {
             (requireActivity() as KeyboardHandler).hideKeyboard()
             vm.getTopHeadlines(et_input.text.toString())
@@ -69,3 +66,4 @@ class NewsFragment : BaseFragment<NewsDagger.NewsComponent, NewsViewModel>() {
         startActivity(intent)
     }
 }
+

@@ -1,40 +1,49 @@
 package com.kursivee.framework_domain.fragment
 
 import android.os.Bundle
-import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProviders
+import com.kursivee.framework_domain.handler.ProgressBarHandler
 import com.kursivee.framework_domain.injector.Injector
-import com.kursivee.framework_domain.activity.BaseActivity
 import com.kursivee.framework_domain.viewmodel.BaseViewModel
 
 abstract class BaseFragment<T, VM: BaseViewModel>: Fragment(), Injector<T> {
-    lateinit var vm: VM
+    protected lateinit var vm: VM
 
-    private fun showSpinner() {
-        (activity as BaseActivity<*>).showSpinner()
-    }
+    /**
+     * Handles triggering the progress bar from activity
+     */
+    private val progressBarHandler: ProgressBarHandler = (requireActivity() as ProgressBarHandler)
+    private fun startProgress() { progressBarHandler.startProgress() }
+    private fun stopProgress() { progressBarHandler.stopProgress() }
 
-    private fun hideSpinner() {
-        (activity as BaseActivity<*>).hideSpinner()
-    }
-
+    /**
+     * Contains default logic for handling on error or loading
+     */
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        vm.loading.observe(viewLifecycleOwner, Observer {
+        vm.loading.observe {
             if(it) {
-                showSpinner()
+                startProgress()
             } else {
-                hideSpinner()
+                stopProgress()
             }
-        })
-        vm.error.observe(viewLifecycleOwner, Observer {
-            Toast.makeText(requireContext(), it, Toast.LENGTH_LONG).show()
-            onError()
+        }
+        vm.error.observe(::onError)
+    }
+
+    /**
+     * Utility function that wraps viewLifecycleOwner and Observer around lambda
+     */
+    protected fun <R> LiveData<R>.observe(block: (R) -> Unit) {
+        observe(viewLifecycleOwner, Observer {
+            block(it)
         })
     }
 
-    open fun onError() {}
+    /**
+     * Overridable function that executes when an error is observed.
+     */
+    protected open fun onError(message: String) {}
 }

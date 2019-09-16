@@ -11,8 +11,8 @@ import javax.inject.Inject
 class NewsViewModel @Inject constructor(
     private val getIpInformation: GetTopHeadlines
 ) : BaseViewModel() {
-    private val mutableS: MutableLiveData<List<Article>> = MutableLiveData(emptyList())
-    val s: LiveData<List<Article>> = mutableS
+    private val mutableArticles: MutableLiveData<List<Article>> = MutableLiveData(emptyList())
+    val articles: LiveData<List<Article>> = mutableArticles
 
     fun getTopHeadlines(ipAddress: String) {
         request {
@@ -22,7 +22,7 @@ class NewsViewModel @Inject constructor(
                     mutableError.postValue(it.message)
                 },
                 ifRight = {
-                    mutableS.postValue(it.articles.toList())
+                    mutableArticles.postValue(it.articles.toList())
                 }
             )
         }
