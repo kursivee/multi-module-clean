@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/framework_data" />
             <option value="$PROJECT_DIR$/framework_domain" />
             <option value="$PROJECT_DIR$/framework_presentation" />
+            <option value="$PROJECT_DIR$/login_presentation" />
             <option value="$PROJECT_DIR$/network_data" />
             <option value="$PROJECT_DIR$/network_domain" />
             <option value="$PROJECT_DIR$/network_presentation" />
