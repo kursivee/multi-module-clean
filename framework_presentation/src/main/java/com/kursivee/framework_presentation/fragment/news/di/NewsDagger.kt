@@ -7,7 +7,8 @@ import dagger.Subcomponent
 object NewsDagger {
     @Subcomponent(
         modules = [
-            ViewModelModule::class
+            ViewModelModule::class,
+            UdfModule::class
         ]
     )
     @FragmentScope

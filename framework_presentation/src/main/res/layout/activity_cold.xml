@@ -22,8 +22,8 @@
                                                        app:layout_constraintStart_toStartOf="parent">
         <fragment
                 android:name="androidx.navigation.fragment.NavHostFragment"
-                android:layout_width="395dp"
-                android:layout_height="715dp" app:navGraph="@navigation/app_nav_graph" app:defaultNavHost="true"
+                android:layout_width="0dp"
+                android:layout_height="0dp" app:navGraph="@navigation/app_nav_graph" app:defaultNavHost="true"
                 android:id="@+id/nh_fragment"
                 app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"

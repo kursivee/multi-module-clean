@@ -13,7 +13,7 @@ abstract class BaseViewModel: ViewModel() {
     protected val mutableError: MutableLiveData<String> = MutableLiveData()
     val error: LiveData<String> = mutableError
 
-    fun request(block: suspend () -> Unit) {
+    open fun request(block: suspend () -> Unit) {
         mutableLoading.postValue(true)
         viewModelScope.launch {
             block()

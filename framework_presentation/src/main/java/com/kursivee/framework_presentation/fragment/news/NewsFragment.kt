@@ -11,11 +11,15 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.kursivee.framework_domain.fragment.BaseFragment
 import com.kursivee.framework_domain.handler.KeyboardHandler
 import com.kursivee.framework_domain.injector.ext.injector
 import com.kursivee.framework_presentation.R
 import com.kursivee.framework_presentation.fragment.news.di.NewsDagger
+import com.kursivee.framework_presentation.fragment.news.udf.NewsState
+import com.kursivee.network_domain.news.model.Article
 import kotlinx.android.synthetic.main.news_fragment.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -53,16 +57,22 @@ class NewsFragment : BaseFragment<NewsDagger.NewsComponent, NewsViewModel>() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         vm = ViewModelProviders.of(this, viewModelFactory).get(NewsViewModel::class.java)
-        rv_news.init(newsListAdapter)
-        vm.articles.observe {
-            newsListAdapter.updateList(it)
-            rv_news.scrollToPosition(0)
-        }
+        rv_news.init(newsListAdapter, LinearLayoutManager(context))
         btn_submit.setOnClickListener {
             (requireActivity() as KeyboardHandler).hideKeyboard()
             vm.getTopHeadlines(et_input.text.toString())
         }
+        vm.store.state.observe {
+            rv_news.render(it.articles)
+            if(it.loading) { startProgress() } else { stopProgress() }
+            if(it.error.isNotEmpty()) { AlertDialog.Builder(context).setMessage(it.error).show() }
+        }
         super.onActivityCreated(savedInstanceState)
+    }
+
+    private fun RecyclerView.render(articles: List<Article>) {
+        newsListAdapter.updateList(articles)
+        scrollToPosition(0)
     }
 
     private fun openUrl(url: String) {

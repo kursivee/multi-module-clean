@@ -17,8 +17,8 @@ abstract class BaseFragment<T, VM: BaseViewModel>: Fragment(), Injector<T> {
     private val progressBarHandler: ProgressBarHandler by lazy {
         (requireActivity() as ProgressBarHandler)
     }
-    private fun startProgress() { progressBarHandler.startProgress() }
-    private fun stopProgress() { progressBarHandler.stopProgress() }
+    protected fun startProgress() { progressBarHandler.startProgress() }
+    protected fun stopProgress() { progressBarHandler.stopProgress() }
 
     /**
      * Contains default logic for handling on error or loading

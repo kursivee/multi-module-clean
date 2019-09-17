@@ -23,7 +23,7 @@ open class CustomRecyclerView @JvmOverloads constructor(
 ) {
     var isHideKeyboard: Boolean = true
 
-    fun init(adapter: Adapter<*>, layoutManager: LayoutManager = LinearLayoutManager(context as Activity)) {
+    fun init(adapter: Adapter<*>, layoutManager: LayoutManager) {
         this.adapter = adapter
         this.layoutManager = layoutManager
         setOnTouchListener { _, _ -> false }
