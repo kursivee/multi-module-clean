@@ -45,4 +45,6 @@ dependencies {
     implementation project(":network_domain")
     implementation project(":framework_domain")
     implementation project(":framework_data")
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
 }

@@ -1,7 +1,9 @@
 package com.kursivee.framework_presentation.fragment.news
 
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import com.kursivee.framework_domain.viewmodel.BaseViewModel
 import com.kursivee.network_domain.news.model.Article
 import com.kursivee.network_domain.news.model.NewsRequest

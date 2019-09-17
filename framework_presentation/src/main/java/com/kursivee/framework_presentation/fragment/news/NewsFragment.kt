@@ -1,5 +1,6 @@
 package com.kursivee.framework_presentation.fragment.news
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -7,6 +8,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.kursivee.framework_domain.fragment.BaseFragment
@@ -15,6 +17,8 @@ import com.kursivee.framework_domain.injector.ext.injector
 import com.kursivee.framework_presentation.R
 import com.kursivee.framework_presentation.fragment.news.di.NewsDagger
 import kotlinx.android.synthetic.main.news_fragment.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -49,7 +53,6 @@ class NewsFragment : BaseFragment<NewsDagger.NewsComponent, NewsViewModel>() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         vm = ViewModelProviders.of(this, viewModelFactory).get(NewsViewModel::class.java)
-        super.onActivityCreated(savedInstanceState)
         rv_news.init(newsListAdapter)
         vm.articles.observe {
             newsListAdapter.updateList(it)
@@ -59,6 +62,7 @@ class NewsFragment : BaseFragment<NewsDagger.NewsComponent, NewsViewModel>() {
             (requireActivity() as KeyboardHandler).hideKeyboard()
             vm.getTopHeadlines(et_input.text.toString())
         }
+        super.onActivityCreated(savedInstanceState)
     }
 
     private fun openUrl(url: String) {

@@ -14,7 +14,9 @@ abstract class BaseFragment<T, VM: BaseViewModel>: Fragment(), Injector<T> {
     /**
      * Handles triggering the progress bar from activity
      */
-    private val progressBarHandler: ProgressBarHandler = (requireActivity() as ProgressBarHandler)
+    private val progressBarHandler: ProgressBarHandler by lazy {
+        (requireActivity() as ProgressBarHandler)
+    }
     private fun startProgress() { progressBarHandler.startProgress() }
     private fun stopProgress() { progressBarHandler.stopProgress() }
 

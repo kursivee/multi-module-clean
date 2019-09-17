@@ -5,7 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".activity.PublicActivity">
+        tools:context="com.kursivee.framework_presentation.activity.PublicActivity">
     <ProgressBar
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="0dp"
@@ -20,5 +20,13 @@
                                                        app:layout_constraintBottom_toBottomOf="parent"
                                                        app:layout_constraintEnd_toEndOf="parent"
                                                        app:layout_constraintStart_toStartOf="parent">
+        <fragment
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="395dp"
+                android:layout_height="715dp" app:navGraph="@navigation/app_nav_graph" app:defaultNavHost="true"
+                android:id="@+id/nh_fragment"
+                app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -61,7 +61,11 @@ dependencies {
     implementation project(":network_domain")
     implementation project(":network_presentation")
 
+    implementation project(':login_presentation')
+
     implementation project(':framework_presentation')
     implementation project(":framework_domain")
     implementation project(":framework_data")
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.1.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.1.0'
 }

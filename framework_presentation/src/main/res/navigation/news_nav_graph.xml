@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/news_nav_graph" app:startDestination="@id/newsFragment">
+
+    <fragment android:id="@+id/newsFragment"
+              android:name="com.kursivee.framework_presentation.fragment.news.NewsFragment"
+              android:label="NewsFragment">
+        <deepLink android:id="@+id/deepLink" app:uri="app://newsFragment"/>
+    </fragment>
+</navigation>
