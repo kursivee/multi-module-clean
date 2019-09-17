@@ -58,13 +58,19 @@ class NewsFragment : BaseFragment<NewsDagger.NewsComponent, NewsViewModel>() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         vm = ViewModelProviders.of(this, viewModelFactory).get(NewsViewModel::class.java)
         rv_news.init(newsListAdapter, LinearLayoutManager(context))
+        srl_news.setOnRefreshListener {
+            vm.getTopHeadlines(et_input.text.toString())
+        }
         btn_submit.setOnClickListener {
             (requireActivity() as KeyboardHandler).hideKeyboard()
             vm.getTopHeadlines(et_input.text.toString())
         }
         vm.store.state.observe {
             rv_news.render(it.articles)
-            if(it.loading) { startProgress() } else { stopProgress() }
+            if(it.loading) { startProgress() } else {
+                stopProgress()
+                srl_news.isRefreshing = false
+            }
             if(it.error.isNotEmpty()) { AlertDialog.Builder(context).setMessage(it.error).show() }
         }
         super.onActivityCreated(savedInstanceState)

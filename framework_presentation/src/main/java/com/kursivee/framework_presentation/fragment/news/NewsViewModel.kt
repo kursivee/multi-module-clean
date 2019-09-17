@@ -18,15 +18,15 @@ class NewsViewModel @Inject constructor(
 
     fun getTopHeadlines(country: String) {
         request {
-            val response = getIpInformation.execute(NewsRequest(country))
-            response.fold(
-                ifLeft = {
-                    store.dispatch(NewsAction.RequestNewsFailure(error = it.message))
-                },
-                ifRight = {
-                    store.dispatch(NewsAction.RequestNewsSuccess(articles = it.articles.toList()))
-                }
-            )
+            getIpInformation.execute(NewsRequest(country))
+                .fold(
+                    ifLeft = {
+                        dispatch(NewsAction.RequestNewsFailure(error = it.message))
+                    },
+                    ifRight = {
+                        dispatch(NewsAction.RequestNewsSuccess(articles = it.articles.toList()))
+                    }
+                )
         }
     }
 }

@@ -1,12 +1,10 @@
 package com.kursivee.framework_data.recyclerview
 
-import android.app.Activity
 import android.content.Context
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnTouchListener
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.kursivee.framework_domain.handler.KeyboardHandler
 
