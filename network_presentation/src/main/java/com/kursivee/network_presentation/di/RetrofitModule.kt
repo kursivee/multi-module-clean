@@ -3,7 +3,7 @@ package com.kursivee.network_presentation.di
 import android.content.Context
 import coil.util.CoilUtils
 import com.kursivee.network_data.news.api.NewsApi
-import com.kursivee.network_presentation.ApiKeyInterceptor
+import com.kursivee.network_data.common.interceptor.ApiKeyInterceptor
 import com.kursivee.network_presentation.BuildConfig
 import com.squareup.moshi.Moshi
 import dagger.Module

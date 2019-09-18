@@ -1,4 +1,4 @@
-package com.kursivee.network_presentation
+package com.kursivee.network_data.common.interceptor
 
 import okhttp3.Interceptor
 import okhttp3.Response

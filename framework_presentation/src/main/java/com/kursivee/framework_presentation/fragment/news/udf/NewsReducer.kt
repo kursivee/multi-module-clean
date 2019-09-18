@@ -1,6 +1,6 @@
 package com.kursivee.framework_presentation.fragment.news.udf
 
-import com.kursivee.framework_domain.udf.UdfReducer
+import com.kursivee.framework_data.udf.UdfReducer
 import javax.inject.Inject
 
 class NewsReducer @Inject constructor(): UdfReducer<NewsAction, NewsState>() {

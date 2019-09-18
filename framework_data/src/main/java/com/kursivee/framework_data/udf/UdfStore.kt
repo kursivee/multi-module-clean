@@ -1,4 +1,4 @@
-package com.kursivee.framework_domain.udf
+package com.kursivee.framework_data.udf
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

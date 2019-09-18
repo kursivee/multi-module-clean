@@ -1,10 +1,7 @@
-package com.kursivee.framework_domain.viewmodel
+package com.kursivee.framework_data.udf
 
 import androidx.lifecycle.viewModelScope
-import com.kursivee.framework_domain.udf.Action
-import com.kursivee.framework_domain.udf.UdfReducer
-import com.kursivee.framework_domain.udf.State
-import com.kursivee.framework_domain.udf.UdfStore
+import com.kursivee.framework_domain.viewmodel.BaseViewModel
 import kotlinx.coroutines.launch
 
 abstract class UdfViewModel<A: Action, S: State, R: UdfReducer<A, S>>(

@@ -1,6 +1,6 @@
 package com.kursivee.framework_presentation.fragment.news.udf
 
-import com.kursivee.framework_domain.udf.Action
+import com.kursivee.framework_data.udf.Action
 import com.kursivee.network_domain.news.model.Article
 
 sealed class NewsAction: Action {

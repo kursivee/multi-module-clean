@@ -1,6 +1,6 @@
 package com.kursivee.framework_presentation.fragment.news
 
-import com.kursivee.framework_domain.viewmodel.UdfViewModel
+import com.kursivee.framework_data.udf.UdfViewModel
 import com.kursivee.framework_presentation.fragment.news.udf.NewsAction
 import com.kursivee.framework_presentation.fragment.news.udf.NewsReducer
 import com.kursivee.framework_presentation.fragment.news.udf.NewsState
