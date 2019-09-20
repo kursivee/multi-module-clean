@@ -10,7 +10,7 @@ import com.kursivee.network_domain.news.usecase.GetTopHeadlines
 import javax.inject.Inject
 
 class NewsViewModel @Inject constructor(
-    private val getIpInformation: GetTopHeadlines,
+    private val getTopHeadlines: GetTopHeadlines,
     val store: NewsStore
 ) : UdfViewModel<NewsAction, NewsState, NewsReducer>(store) {
 
@@ -18,7 +18,7 @@ class NewsViewModel @Inject constructor(
 
     fun getTopHeadlines(country: String) {
         request {
-            getIpInformation.execute(NewsRequest(country))
+            getTopHeadlines(NewsRequest(country))
                 .fold(
                     ifLeft = {
                         dispatch(NewsAction.RequestNewsFailure(error = it.message))
