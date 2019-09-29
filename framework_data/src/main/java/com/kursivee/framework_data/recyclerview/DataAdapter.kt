@@ -11,13 +11,13 @@ abstract class DataAdapter<T, VH: CustomViewHolder<T>>(
     @LayoutRes private val layoutId: Int
 ): RecyclerView.Adapter<VH>() {
 
-    abstract fun initViewHolder(view: View, viewType: Int): VH
+    abstract fun initViewHolder(parent: ViewGroup, view: View, viewType: Int): VH
 
     override fun getItemCount(): Int = data.size
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val view = LayoutInflater.from(parent.context)
             .inflate(layoutId, parent, false)
-        return initViewHolder(view, viewType)
+        return initViewHolder(parent, view, viewType)
     }
 
     override fun onBindViewHolder(holder: VH, position: Int) {
